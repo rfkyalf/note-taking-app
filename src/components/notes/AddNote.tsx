@@ -19,7 +19,11 @@ export default function AddNote() {
         title="Add Note"
         className="bg-neutral-900 p-2 rounded-full"
       >
-        <Plus className="size-4 md:size-5 text-neutral-100" />
+        <Plus
+          className={`size-4 md:size-5 text-neutral-100 transition-transform duration-300 ${
+            isOpen ? 'rotate-45' : 'rotate-0'
+          }`}
+        />
       </button>
     </div>
   );

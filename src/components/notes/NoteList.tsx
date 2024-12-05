@@ -80,7 +80,7 @@ export default function NoteList() {
             key={i}
             className="w-full bg-neutral-50 flex flex-col shadow-md rounded-md p-2 md:p-4"
           >
-            <p className="text-[0.7rem] md:text-[0.8rem] text-neutral-400 self-end mb-1">
+            <p className="text-[0.6rem] md:text-[0.7rem] text-neutral-400 self-end mb-1">
               {new Date().toDateString()}
             </p>
             <h3 className="text-[1rem] md:text-[1.1rem] text-neutral-900 font-medium">
@@ -92,7 +92,7 @@ export default function NoteList() {
               distinctio!
             </p>
             <div className="flex items-center justify-between mt-2 md:mt-4">
-              <p className="w-fit bg-violet-300 text-[0.7rem] md:text-[0.8rem] text-neutral-900 px-2 rounded-full">
+              <p className="w-fit bg-violet-300 text-[0.7rem] md:text-[0.8rem] text-neutral-900 px-2 rounded">
                 Home
               </p>
               <div className="flex items-center gap-x-1 md:gap-x-2">

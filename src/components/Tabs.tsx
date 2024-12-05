@@ -49,7 +49,7 @@ export function TabsTitle({
   return (
     <li
       className={cn(
-        `cursor-pointer px-2 md:px-4 py-1 rounded-md hover:text-neutral-700  ${
+        `cursor-pointer px-2 md:px-4 py-1 md:py-2 rounded-md hover:text-neutral-700  ${
           isActive
             ? 'text-neutral-700 bg-neutral-50 shadow'
             : 'text-neutral-400'
@@ -62,7 +62,7 @@ export function TabsTitle({
         className="flex items-center gap-x-2 md:gap-x-3"
       >
         <span>{icon}</span>
-        <span className="text-[0.9rem] md:text-[1rem]">{title}</span>
+        <span className="text-[0.8rem] md:text-[0.9rem]">{title}</span>
       </button>
     </li>
   );
