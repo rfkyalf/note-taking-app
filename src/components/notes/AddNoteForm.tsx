@@ -1,9 +1,33 @@
+'use client';
+
+import { isOpenStore } from '@/store/openStore';
 import Wrapper from '../Wrapper';
+import { useShallow } from 'zustand/shallow';
 
 export default function AddNoteForm() {
+  const { isOpen, setOpen } = isOpenStore(
+    useShallow((state) => ({
+      isOpen: state.isOpen,
+      setOpen: state.setOpen,
+    }))
+  );
+
   return (
-    <div className="fixed inset-0 bg-neutral-950/20 backdrop-blur-[2px] flex items-center justify-center">
-      <Wrapper className="bg-neutral-50 p-4 md:p-6 rounded-md shadow-md">
+    <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget) setOpen(false);
+      }}
+      className={`fixed inset-0 bg-neutral-950/20 backdrop-blur-[2px] flex items-center justify-center transition-opacity duration-300 ${
+        isOpen
+          ? 'pointer-events-auto opacity-100'
+          : 'pointer-events-none opacity-0'
+      }`}
+    >
+      <Wrapper
+        className={`bg-neutral-50 p-4 md:p-6 rounded-md shadow-md transition-transform duration-200 ${
+          isOpen ? 'scale-100' : 'scale-0'
+        }`}
+      >
         <form className="flex flex-col gap-y-6">
           <h2 className="text-[1rem] text-neutral-900 font-medium border-b border-dashed border-neutral-300 pb-6">
             Add Note
