@@ -1,6 +1,12 @@
 'use client';
 
 import Tabs, { TabsContent, TabsHeader, TabsTitle } from '@/components/Tabs';
+import {
+  BriefcaseBusiness,
+  GalleryHorizontalEnd,
+  House,
+  SquareUserRound,
+} from 'lucide-react';
 import { useState } from 'react';
 
 export default function NoteList() {
@@ -12,24 +18,52 @@ export default function NoteList() {
         <TabsTitle
           title="All"
           value="all"
+          icon={
+            <GalleryHorizontalEnd
+              className={`size-4 md:size-5 ${
+                activeTab === 'all' ? 'text-lime-500' : ''
+              }`}
+            />
+          }
           isActive={activeTab === 'all'}
           onClick={setActiveTab}
         />
         <TabsTitle
           title="Home"
           value="home"
+          icon={
+            <House
+              className={`size-4 md:size-5 ${
+                activeTab === 'home' ? 'text-violet-500' : ''
+              }`}
+            />
+          }
           isActive={activeTab === 'home'}
           onClick={setActiveTab}
         />
         <TabsTitle
           title="Job"
           value="job"
+          icon={
+            <BriefcaseBusiness
+              className={`size-4 md:size-5 ${
+                activeTab === 'job' ? 'text-rose-500' : ''
+              }`}
+            />
+          }
           isActive={activeTab === 'job'}
           onClick={setActiveTab}
         />
         <TabsTitle
           title="Personal"
           value="personal"
+          icon={
+            <SquareUserRound
+              className={`size-4 md:size-5 ${
+                activeTab === 'personal' ? 'text-blue-500' : ''
+              }`}
+            />
+          }
           isActive={activeTab === 'personal'}
           onClick={setActiveTab}
         />

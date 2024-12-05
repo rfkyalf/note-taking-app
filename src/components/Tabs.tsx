@@ -22,7 +22,7 @@ export function TabsHeader({
   return (
     <ul
       className={cn(
-        'flex flex-wrap items-center gap-x-2 md:gap-x-4 lg:gap-x-6 border-b border-neutral-300',
+        'flex flex-wrap items-center gap-x-2 gap-y-2 md:gap-x-4 lg:gap-x-6',
         className
       )}
     >
@@ -37,23 +37,33 @@ export function TabsTitle({
   value,
   isActive,
   onClick,
+  icon,
 }: {
   title: string;
   className?: string;
   value: string;
   isActive: boolean;
   onClick: (value: string) => void;
+  icon: React.ReactNode;
 }) {
   return (
     <li
       className={cn(
-        `text-[0.9rem] md:text-[1rem] cursor-pointer border-b-2 border-transparent ${
-          isActive ? 'text-neutral-700 border-neutral-700' : 'text-neutral-400'
+        `cursor-pointer px-2 md:px-4 py-1 rounded-md hover:text-neutral-700  ${
+          isActive
+            ? 'text-neutral-700 bg-neutral-50 shadow'
+            : 'text-neutral-400'
         }`,
         className
       )}
     >
-      <button onClick={() => onClick(value)}>{title}</button>
+      <button
+        onClick={() => onClick(value)}
+        className="flex items-center gap-x-2 md:gap-x-3"
+      >
+        <span>{icon}</span>
+        <span className="text-[0.9rem] md:text-[1rem]">{title}</span>
+      </button>
     </li>
   );
 }
