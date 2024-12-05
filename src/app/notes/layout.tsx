@@ -1,3 +1,5 @@
+import AddNote from '@/components/notes/AddNote';
+import AddNoteForm from '@/components/notes/AddNoteForm';
 import NotesNavbar from '@/components/notes/NotesNavbar';
 
 export default function NotesLayout({
@@ -9,6 +11,8 @@ export default function NotesLayout({
     <div className="bg-neutral-100 min-h-screen flex flex-col">
       <NotesNavbar />
       {children}
+      <AddNote />
+      <AddNoteForm />
     </div>
   );
 }

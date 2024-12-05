@@ -5,7 +5,9 @@ import {
   BriefcaseBusiness,
   GalleryHorizontalEnd,
   House,
+  PencilLine,
   SquareUserRound,
+  Trash2,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -78,24 +80,34 @@ export default function NoteList() {
             key={i}
             className="w-full bg-neutral-50 flex flex-col shadow-md rounded-md p-2 md:p-4"
           >
-            <p className="text-[0.7rem] text-neutral-500 self-end mb-1">
+            <p className="text-[0.7rem] md:text-[0.8rem] text-neutral-400 self-end mb-1">
               {new Date().toDateString()}
             </p>
-            <h3 className="text-[1rem] text-neutral-900 font-medium">
+            <h3 className="text-[1rem] md:text-[1.1rem] text-neutral-900 font-medium">
               Lorem ipsum dolor sit amet.
             </h3>
-            <p className="text-[0.8rem] text-neutral-700 text-pretty">
+            <p className="text-[0.8rem] md:text-[0.9rem] text-neutral-700 text-pretty">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
               nihil culpa molestias ullam saepe nam magni cum tenetur ea
               distinctio!
             </p>
-            <p className="w-fit bg-violet-300 text-[0.7rem] text-neutral-900 px-2 rounded-full mt-2 md:mt-4">
-              Home
-            </p>
+            <div className="flex items-center justify-between mt-2 md:mt-4">
+              <p className="w-fit bg-violet-300 text-[0.7rem] md:text-[0.8rem] text-neutral-900 px-2 rounded-full">
+                Home
+              </p>
+              <div className="flex items-center gap-x-1 md:gap-x-2">
+                <button>
+                  <PencilLine className="size-4 md:size-5 text-neutral-400 hover:text-neutral-700" />
+                </button>
+                <button>
+                  <Trash2 className="size-4 md:size-5 text-neutral-400 hover:text-neutral-700" />
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </TabsContent>
-      <TabsContent value="memek" activeTab={activeTab}>
+      <TabsContent value="home" activeTab={activeTab}>
         <div>Memek</div>
       </TabsContent>
     </Tabs>
