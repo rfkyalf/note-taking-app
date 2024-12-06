@@ -97,3 +97,40 @@ export const deletePrivateNote = async (id: string) => {
 
   revalidatePath('/notes');
 };
+
+export async function updateNote(
+  id: string,
+  state: CreateNoteState,
+  formData: FormData
+): Promise<CreateNoteState> {
+  const validatedFields = PrivateNoteSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  if (!validatedFields.success) {
+    return {
+      error: validatedFields.error.flatten().fieldErrors,
+      isSuccess: false,
+    };
+  }
+
+  const user = await currentUser();
+
+  if (!user) redirect('/sign-in');
+
+  try {
+    await prisma.private_Note.update({
+      data: {
+        title: validatedFields.data.title,
+        content: validatedFields.data.content,
+        category: validatedFields.data.category,
+      },
+      where: { id, user_id: user.id },
+    });
+  } catch (error) {
+    return { error: { message: [(error as Error).message] }, isSuccess: false };
+  }
+
+  revalidatePath('/notes');
+  return { isSuccess: true };
+}

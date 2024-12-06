@@ -1,6 +1,9 @@
 'use client';
 
+import { deletePrivateNote } from '@/actions/notes';
 import { LoaderCircle, Trash2 } from 'lucide-react';
+import { useFormStatus } from 'react-dom';
+import toast from 'react-hot-toast';
 import {
   Dialog,
   DialogContent,
@@ -10,12 +13,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../ui/dialog';
-import toast from 'react-hot-toast';
-import { deletePrivateNote } from '@/actions/notes';
-import { useFormStatus } from 'react-dom';
-import { Private_Note } from '@prisma/client';
 
-export default function DeleteNote({ id }: Private_Note) {
+export default function DeleteNote({ id }: { id: string }) {
   const deleteNoteById = deletePrivateNote.bind(null, id);
 
   return (
@@ -23,7 +22,7 @@ export default function DeleteNote({ id }: Private_Note) {
       <DialogTrigger>
         <Trash2 className="size-4 md:size-5 text-neutral-400 hover:text-neutral-700" />
       </DialogTrigger>
-      <DialogContent className="w-[95%] md:w-[650px] lg:w-[850px] xl:w-[1050px] bg-neutral-50 flex flex-col p-4 rounded-md ">
+      <DialogContent className="w-[95%] md:w-[400px] bg-neutral-50 flex flex-col p-4 rounded-md ">
         <DialogHeader className="text-start">
           <DialogTitle className="text-[1.2rem] font-semibold text-neutral-900">
             Delete this note?
