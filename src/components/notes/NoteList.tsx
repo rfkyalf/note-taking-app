@@ -1,4 +1,5 @@
 import { getNotes } from '@/actions/getNotes';
+import { formatRelativeDate } from '@/lib/utils';
 import { NoteCategory } from '@prisma/client';
 import { PencilLine, Trash2 } from 'lucide-react';
 
@@ -31,17 +32,20 @@ export default async function NoteList({
           {notes?.map((note) => (
             <div
               key={note.id}
-              className="w-full bg-neutral-50 flex flex-col shadow-md rounded-md p-2 md:p-4"
+              className="w-full bg-neutral-50 flex flex-col justify-between shadow-md rounded-md p-2 md:p-4"
             >
-              <p className="text-[0.6rem] md:text-[0.7rem] text-neutral-400 self-end mb-1">
-                {note.createdAt.toDateString()}
-              </p>
-              <h3 className="text-[1rem] md:text-[1.1rem] text-neutral-900 font-medium">
-                {note.title}
-              </h3>
-              <p className="text-[0.8rem] md:text-[0.9rem] text-neutral-700 text-pretty">
-                {note.content}
-              </p>
+              <div className="flex flex-col">
+                <p className="text-[0.6rem] md:text-[0.7rem] text-neutral-400 self-end mb-1">
+                  {/* {note.createdAt.toDateString()} */}
+                  {formatRelativeDate(note.createdAt.toISOString())}
+                </p>
+                <h3 className="text-[1rem] md:text-[1.1rem] text-neutral-900 font-medium">
+                  {note.title}
+                </h3>
+                <p className="text-[0.8rem] md:text-[0.9rem] text-neutral-700 text-pretty whitespace-pre-wrap max-h-[150px] overflow-auto">
+                  {note.content}
+                </p>
+              </div>
               <div className="flex items-center justify-between mt-2 md:mt-4">
                 <p
                   className={`w-fit text-[0.7rem] md:text-[0.8rem] text-neutral-900 px-2 rounded ${categoryColor(

@@ -62,34 +62,40 @@ export default function AddNoteForm() {
           <h2 className="text-[1.2rem] md:text-[1.3rem] text-neutral-900 font-medium border-b border-dashed border-neutral-300 pb-2">
             Add Note
           </h2>
-          <input
-            type="text"
-            name="title"
-            className={`bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2 ${
-              state.error?.title
-                ? 'border border-red-500 placeholder-red-500'
-                : ''
-            }`}
-            placeholder={
-              state.error?.title
-                ? state.error.title[0]
-                : 'Type your title here...'
-            }
-          />
-          <textarea
-            rows={5}
-            name="content"
-            className={`bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2 ${
-              state.error?.content
-                ? 'border border-red-500 placeholder-red-500'
-                : ''
-            }`}
-            placeholder={
-              state.error?.content
-                ? state.error.content[0]
-                : 'Type your note here...'
-            }
-          />
+          <div className="flex flex-col">
+            <input
+              type="text"
+              name="title"
+              className={`bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2 ${
+                state.error?.title
+                  ? 'border border-red-500 placeholder-red-500'
+                  : ''
+              }`}
+              placeholder="Type your title here..."
+            />
+            {state.error?.title && (
+              <p className="text-red-500 text-[0.8rem] md:text-[0.9rem] mt-1">
+                {state.error?.title}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col">
+            <textarea
+              rows={5}
+              name="content"
+              className={`bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2 ${
+                state.error?.content
+                  ? 'border border-red-500 placeholder-red-500'
+                  : ''
+              }`}
+              placeholder="Type your note here..."
+            />
+            {state.error?.content && (
+              <p className="text-red-500 text-[0.8rem] md:text-[0.9rem] mt-1">
+                {state.error?.content}
+              </p>
+            )}
+          </div>
           <select
             name="category"
             defaultValue="HOME"
