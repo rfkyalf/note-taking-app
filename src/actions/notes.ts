@@ -17,6 +17,7 @@ type CreateNoteState = {
 };
 
 export const createPrivateNotes = async (
+  state: CreateNoteState,
   formData: FormData
 ): Promise<CreateNoteState> => {
   const validatedFields = PrivateNoteSchema.safeParse(

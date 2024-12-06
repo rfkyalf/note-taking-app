@@ -4,6 +4,9 @@ import { isOpenStore } from '@/store/openStore';
 import Wrapper from '../Wrapper';
 import { useShallow } from 'zustand/shallow';
 import { useEffect } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
+import { createPrivateNotes } from '@/actions/notes';
+import { LoaderCircle } from 'lucide-react';
 
 export default function AddNoteForm() {
   const { isOpen, setOpen } = isOpenStore(
@@ -25,6 +28,18 @@ export default function AddNoteForm() {
     };
   }, [isOpen]);
 
+  const [state, formAction] = useFormState(createPrivateNotes, {
+    error: {},
+  });
+
+  useEffect(() => {
+    if (state.isSuccess) {
+      setOpen(false);
+      state.isSuccess = false;
+      document.querySelector('form')?.reset();
+    }
+  }, [state.isSuccess, setOpen, state]);
+
   return (
     <div
       onClick={(e) => {
@@ -41,35 +56,69 @@ export default function AddNoteForm() {
           isOpen ? 'scale-100' : 'scale-0'
         }`}
       >
-        <form className="flex flex-col gap-y-4 p-4">
+        <form action={formAction} className="flex flex-col gap-y-4 p-4">
           <h2 className="text-[1.2rem] md:text-[1.3rem] text-neutral-900 font-medium border-b border-dashed border-neutral-300 pb-2">
             Add Note
           </h2>
           <input
             type="text"
-            id="title"
-            className="bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2"
-            placeholder="Type your title here..."
+            name="title"
+            className={`bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2 ${
+              state.error?.title
+                ? 'border border-red-500 placeholder-red-500'
+                : ''
+            }`}
+            placeholder={
+              state.error?.title
+                ? state.error.title[0]
+                : 'Type your title here...'
+            }
           />
           <textarea
             rows={5}
-            className="bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2"
-            placeholder="Type your content here..."
+            name="content"
+            className={`bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2 ${
+              state.error?.content
+                ? 'border border-red-500 placeholder-red-500'
+                : ''
+            }`}
+            placeholder={
+              state.error?.content
+                ? state.error.content[0]
+                : 'Type your note here...'
+            }
           />
           <select
-            id="category"
-            defaultValue="home"
+            name="category"
+            defaultValue="HOME"
             className="bg-neutral-200 rounded px-2 text-neutral-800 text-[0.8rem] md:text-[0.9rem] placeholder-neutral-400 placeholder:text-[0.8rem] md:placeholder:text-[0.9rem] py-1 md:py-2"
           >
-            <option value="home">Home</option>
-            <option value="home">Job</option>
-            <option value="home">Personal</option>
+            <option value="HOME">Home</option>
+            <option value="JOB">Job</option>
+            <option value="PERSONAL">Personal</option>
           </select>
-          <button className="bg-neutral-800 hover:bg-neutral-700 text-[0.8rem] md:text-[0.9rem] text-neutral-200 py-1 md:py-2 rounded">
-            Add Note
-          </button>
+          <CreateNoteButton />
         </form>
       </Wrapper>
     </div>
   );
 }
+
+const CreateNoteButton = () => {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className={`bg-neutral-800 hover:bg-neutral-700 text-[0.8rem] md:text-[0.9rem] text-neutral-200 flex items-center justify-center py-1 md:py-2 rounded
+        ${pending ? 'opacity-50 cursor-progress' : ''}
+        `}
+    >
+      {pending ? (
+        <LoaderCircle className="size-4 md:size-5 animate-spin" />
+      ) : (
+        <span>Add Notes</span>
+      )}
+    </button>
+  );
+};
