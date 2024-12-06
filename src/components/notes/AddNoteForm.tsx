@@ -1,6 +1,5 @@
 'use client';
 
-import { createPrivateNotes } from '@/actions/createNotes';
 import { isOpenStore } from '@/store/openStore';
 import { LoaderCircle } from 'lucide-react';
 import { useEffect } from 'react';
@@ -8,6 +7,7 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { useShallow } from 'zustand/shallow';
 import { successToast } from '../Toast';
 import Wrapper from '../Wrapper';
+import { createPrivateNotes } from '@/actions/notes';
 
 export default function AddNoteForm() {
   const { isOpen, setOpen } = isOpenStore(

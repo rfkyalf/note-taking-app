@@ -1,14 +1,15 @@
-import { getNotes } from '@/actions/getNotes';
 import { formatRelativeDate } from '@/lib/utils';
 import { NoteCategory } from '@prisma/client';
-import { PencilLine, Trash2 } from 'lucide-react';
+import { PencilLine } from 'lucide-react';
+import DeleteNote from './DeleteNote';
+import { getPrivateNotes } from '@/actions/notes';
 
 export default async function NoteList({
   category,
 }: {
   category?: NoteCategory;
 }) {
-  const notes = await getNotes(category);
+  const notes = await getPrivateNotes(category);
 
   const categoryColor = (category: NoteCategory) => {
     switch (category) {
@@ -36,7 +37,6 @@ export default async function NoteList({
             >
               <div className="flex flex-col">
                 <p className="text-[0.6rem] md:text-[0.7rem] text-neutral-400 self-end mb-1">
-                  {/* {note.createdAt.toDateString()} */}
                   {formatRelativeDate(note.createdAt.toISOString())}
                 </p>
                 <h3 className="text-[1rem] md:text-[1.1rem] text-neutral-900 font-medium">
@@ -58,9 +58,7 @@ export default async function NoteList({
                   <button>
                     <PencilLine className="size-4 md:size-5 text-neutral-400 hover:text-neutral-700" />
                   </button>
-                  <button>
-                    <Trash2 className="size-4 md:size-5 text-neutral-400 hover:text-neutral-700" />
-                  </button>
+                  <DeleteNote id={note.id} />
                 </div>
               </div>
             </div>
