@@ -1,12 +1,13 @@
 'use client';
 
+import { createPrivateNotes } from '@/actions/createNotes';
 import { isOpenStore } from '@/store/openStore';
-import Wrapper from '../Wrapper';
-import { useShallow } from 'zustand/shallow';
+import { LoaderCircle } from 'lucide-react';
 import { useEffect } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
-import { createPrivateNotes } from '@/actions/notes';
-import { LoaderCircle } from 'lucide-react';
+import { useShallow } from 'zustand/shallow';
+import { successToast } from '../Toast';
+import Wrapper from '../Wrapper';
 
 export default function AddNoteForm() {
   const { isOpen, setOpen } = isOpenStore(
@@ -36,6 +37,7 @@ export default function AddNoteForm() {
     if (state.isSuccess) {
       setOpen(false);
       state.isSuccess = false;
+      successToast();
       document.querySelector('form')?.reset();
     }
   }, [state.isSuccess, setOpen, state]);
