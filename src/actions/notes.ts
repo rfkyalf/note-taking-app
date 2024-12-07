@@ -134,3 +134,22 @@ export async function updateNote(
   revalidatePath('/notes');
   return { isSuccess: true };
 }
+
+export const getPrivateNote = async (id: string) => {
+  const user = await currentUser();
+
+  if (!user) redirect('/sign-in');
+
+  try {
+    const res = await prisma.private_Note.findUnique({
+      where: {
+        id,
+        user_id: user.id,
+      },
+    });
+
+    return res;
+  } catch (error) {
+    throw new Error('Could not fetch note', { cause: error });
+  }
+};

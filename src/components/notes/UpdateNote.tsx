@@ -39,8 +39,6 @@ export default function UpdateNote({
     }
   }, [state]);
 
-  console.log(isOpen);
-
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger>
