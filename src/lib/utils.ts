@@ -1,7 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 import moment from 'moment';
-import { NoteCategory } from '@prisma/client';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -38,14 +37,3 @@ export function formatRelativeDate(date: string) {
     return createdAt.format('HH:mm MMM D, YYYY');
   }
 }
-
-export const categoryColor = (category: NoteCategory) => {
-  switch (category) {
-    case 'HOME':
-      return 'bg-violet-300';
-    case 'JOB':
-      return 'bg-rose-300';
-    case 'PERSONAL':
-      return 'bg-blue-300';
-  }
-};

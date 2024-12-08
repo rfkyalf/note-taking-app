@@ -1,9 +1,9 @@
 import { getPrivateNotes } from '@/actions/notes';
-import { categoryColor, formatRelativeDate } from '@/lib/utils';
+import { formatRelativeDate } from '@/lib/utils';
 import { NoteCategory } from '@prisma/client';
+import Link from 'next/link';
 import DeleteNote from './DeleteNote';
 import UpdateNote from './UpdateNote';
-import Link from 'next/link';
 
 export default async function NoteList({
   category,
@@ -11,6 +11,17 @@ export default async function NoteList({
   category?: NoteCategory;
 }) {
   const notes = await getPrivateNotes(category);
+
+  const categoryColor = (category: NoteCategory) => {
+    switch (category) {
+      case 'HOME':
+        return 'bg-violet-300';
+      case 'JOB':
+        return 'bg-rose-300';
+      case 'PERSONAL':
+        return 'bg-blue-300';
+    }
+  };
 
   return (
     <>
