@@ -1,3 +1,9 @@
+import HeroSection from '@/components/home/HeroSection';
+
 export default function Home() {
-  return <main>Hello</main>;
+  return (
+    <main>
+      <HeroSection />
+    </main>
+  );
 }

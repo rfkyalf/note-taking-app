@@ -17,7 +17,7 @@ import Wrapper from '../Wrapper';
 
 export default function HomeNavbar() {
   return (
-    <div className="bg-neutral-50 shadow py-2">
+    <div className="fixed z-40 w-full mx-auto bg-neutral-50 py-2 md:py-4">
       <Wrapper className="flex items-center justify-between">
         <DesktopNavbar />
         <MobileNavbar />
