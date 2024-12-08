@@ -6,7 +6,10 @@ const FEATURES_DESC =
 
 export default function FeaturesSection() {
   return (
-    <section className="md:h-screen flex flex-col justify-center items-center gap-y-6">
+    <section
+      id="features"
+      className="md:h-screen flex flex-col justify-center items-center gap-y-6"
+    >
       <SectionHeader
         section_name="Features"
         title="Stay Focused, Stay Organized"

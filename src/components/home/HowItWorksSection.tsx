@@ -1,5 +1,6 @@
 import SectionHeader from '@/components/home/SectionHeader';
 import { HOW_IT_WORKS } from '@/lib/constanst';
+import Link from 'next/link';
 
 export default function HowItWorksSection() {
   return (
@@ -39,9 +40,12 @@ export default function HowItWorksSection() {
             Create your account and start saving your notes today!
           </p>
         </div>
-        <button className="relative w-fit bg-neutral-50 text-[0.8rem] text-neutral-900 px-4 py-1 rounded">
+        <Link
+          href="/sign-up"
+          className="relative w-fit bg-neutral-50 hover:bg-neutral-200 text-[0.8rem] text-neutral-900 px-4 py-1 rounded"
+        >
           Sign Up
-        </button>
+        </Link>
       </div>
     </section>
   );

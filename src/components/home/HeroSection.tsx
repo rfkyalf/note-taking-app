@@ -14,14 +14,14 @@ export default function HeroSection() {
       </div>
       <div className="relative flex items-center justify-center gap-x-4 md:gap-x-6">
         <Link
-          href="#notes"
-          className="bg-neutral-50 text-[0.8rem] md:text-[0.9rem] lg:text-[1rem] text-neutral-800 shadow-md rounded-md px-4 py-1"
+          href="#features"
+          className="bg-neutral-50 hover:bg-neutral-200 text-[0.8rem] md:text-[0.9rem] lg:text-[1rem] text-neutral-800 shadow-md rounded-md px-4 py-1"
         >
           Learn More
         </Link>
         <Link
           href="/notes"
-          className="bg-neutral-900 text-[0.8rem] md:text-[0.9rem] lg:text-[1rem] text-neutral-200 shadow-md rounded-md px-4 py-1"
+          className="bg-neutral-900 hover:bg-neutral-700 text-[0.8rem] md:text-[0.9rem] lg:text-[1rem] text-neutral-200 shadow-md rounded-md px-4 py-1"
         >
           Get Started
         </Link>
