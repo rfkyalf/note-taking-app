@@ -14,10 +14,26 @@ import { LogIn, Menu, NotebookPen } from 'lucide-react';
 import Link from 'next/link';
 import Icons from '../Icons';
 import Wrapper from '../Wrapper';
+import { useEffect, useState } from 'react';
 
 export default function HomeNavbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="fixed z-40 w-full mx-auto bg-neutral-50 py-2 md:py-4">
+    <div
+      className={`fixed z-40 w-full mx-auto bg-neutral-50 py-2 md:py-4 transition-shadow duration-300 ${
+        isScrolled ? 'shadow' : 'shadow-transparent'
+      }`}
+    >
       <Wrapper className="flex items-center justify-between">
         <DesktopNavbar />
         <MobileNavbar />
