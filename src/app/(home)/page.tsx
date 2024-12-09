@@ -4,7 +4,7 @@ import HowItWorksSection from '@/components/home/HowItWorksSection';
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-hidden">
       <HeroSection />
       <FeaturesSection />
       <HowItWorksSection />

@@ -1,12 +1,19 @@
+'use client';
+
 import { FEATURES } from '@/lib/constanst';
 import SectionHeader from './SectionHeader';
+import { motion } from 'motion/react';
 
 const FEATURES_DESC =
   'Manage your notes effortlessly with NotesApp. Store personal notes securely, share ideas publicly, and stay organized with a simple, intuitive workspace—accessible anytime, anywhere.';
 
 export default function FeaturesSection() {
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
       id="features"
       className="md:h-screen flex flex-col justify-center items-center gap-y-6"
     >
@@ -17,7 +24,11 @@ export default function FeaturesSection() {
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
         {FEATURES.map((feature, index) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.5 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            viewport={{ once: true }}
             key={index}
             className="relative flex flex-col items-center justify-center gap-y-1 border border-neutral-300 rounded-md p-2 md:p-4"
           >
@@ -31,9 +42,9 @@ export default function FeaturesSection() {
             <p className="max-w-[250px] md:max-w-[280px] lg:max-w-[320px] xl:max-w-[380px] text-[0.8rem] md:text-[0.9rem] text-neutral-700 text-center">
               {feature.description}
             </p>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

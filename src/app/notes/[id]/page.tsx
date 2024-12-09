@@ -1,9 +1,21 @@
 import { getPrivateNote } from '@/actions/notes';
 import BackButton from '@/components/BackButton';
 import Wrapper from '@/components/Wrapper';
+import { currentUser } from '@clerk/nextjs/server';
 import { NoteCategory } from '@prisma/client';
 import moment from 'moment';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const user = await currentUser();
+  return {
+    title: 'Private Notes',
+    description: `Welcome ${
+      user?.firstName || 'Guest'
+    }, securely store your thoughts.`,
+  };
+}
 
 export default async function NotePage({ params }: { params: { id: string } }) {
   const note = await getPrivateNote(params.id);

@@ -1,10 +1,19 @@
+'use client';
+
 import SectionHeader from '@/components/home/SectionHeader';
 import { HOW_IT_WORKS } from '@/lib/constanst';
 import Link from 'next/link';
+import { motion } from 'motion/react';
 
 export default function HowItWorksSection() {
   return (
-    <section className="my-10 md:my-0 md:h-screen flex flex-col justify-center items-center gap-y-6 md:gap-y-10">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="my-10 md:my-0 md:h-screen flex flex-col justify-center items-center gap-y-6 md:gap-y-10"
+    >
       <SectionHeader
         section_name="How it Works"
         title="Simple Steps to Save Your Notes"
@@ -12,7 +21,11 @@ export default function HowItWorksSection() {
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
         {HOW_IT_WORKS.map((how) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.5 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.5, delay: how.id * 0.2 }}
+            viewport={{ once: true }}
             key={how.id}
             className="flex flex-col gap-y-4 border border-neutral-300 rounded-md p-2 md:p-4"
           >
@@ -27,10 +40,16 @@ export default function HowItWorksSection() {
                 {how.desc}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-      <div className="relative w-full bg-neutral-950 flex flex-col items-center gap-y-4 md:gap-y-6 rounded-md p-2 md:p-4">
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="relative w-full bg-neutral-950 flex flex-col items-center gap-y-4 md:gap-y-6 rounded-md p-2 md:p-4"
+      >
         <div className="absolute inset-0 h-full w-full bg-[linear-gradient(to_right,#40404040_1px,transparent_1px),linear-gradient(to_bottom,#40404040_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_80%,transparent_100%)]" />
         <div className="relative">
           <h3 className="text-[1rem] text-neutral-100 font-semibold text-center">
@@ -46,7 +65,7 @@ export default function HowItWorksSection() {
         >
           Sign Up
         </Link>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

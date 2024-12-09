@@ -1,6 +1,18 @@
 import GreetingsSection from '@/components/notes/GreetingsSection';
 import TabsNote from '@/components/notes/TabsNote';
 import Wrapper from '@/components/Wrapper';
+import { currentUser } from '@clerk/nextjs/server';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const user = await currentUser();
+  return {
+    title: `${user?.fullName} Private Notes`,
+    description: `Welcome ${
+      user?.firstName || ''
+    }, securely store your thoughts.`,
+  };
+}
 
 export default function NotesPage() {
   return (

@@ -1,6 +1,13 @@
 import { getPublicNotes } from '@/actions/publicNotes';
 import Search from '@/components/public-notes/Search';
 import { formatRelativeDate } from '@/lib/utils';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Public Notes',
+  description:
+    'Find what inspires you. Search through shared notes from people around the world or contribute your own ideas.',
+};
 
 export default async function PublicNotesPage({
   searchParams,
