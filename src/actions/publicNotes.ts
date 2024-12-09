@@ -46,9 +46,17 @@ export const createPublicNotes = async (
   return { isSuccess: true };
 };
 
-export const getPublicNotes = async () => {
+export const getPublicNotes = async (query?: string) => {
   try {
     const res = await prisma.public_Note.findMany({
+      where: query
+        ? {
+            title: {
+              contains: query,
+              mode: 'insensitive',
+            },
+          }
+        : {},
       orderBy: { updatedAt: 'desc' },
     });
 
