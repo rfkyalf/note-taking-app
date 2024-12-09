@@ -1,4 +1,4 @@
-# Notes App: Keep Your Thoughts 📝
+# Notes App | Keep Your Thoughts 📝
 
 <div align="center" width="100%">
    <img width="600" alt="notesapp" src="https://i.imgur.com/bf9wMmx.png">
