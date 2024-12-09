@@ -30,7 +30,7 @@ export default function HomeNavbar() {
 
   return (
     <div
-      className={`fixed z-40 w-full mx-auto bg-neutral-50 py-2 md:py-4 transition-shadow duration-300 ${
+      className={`fixed z-40 w-full mx-auto bg-neutral-50 py-4 transition-shadow duration-300 ${
         isScrolled ? 'shadow' : 'shadow-transparent'
       }`}
     >
@@ -54,11 +54,13 @@ const MobileNavbar = () => {
         className="w-[80%] flex flex-col gap-y-0 p-2 rounded-r-md"
       >
         <SheetHeader className="border-b border-dashed border-neutral-300 pb-2">
-          <SheetTitle className="flex items-center gap-x-1">
-            <NotebookPen className="size-4 text-neutral-950" />
-            <span className="text-[0.9rem] text-neutral-950 font-bold">
-              NotesApp.
-            </span>
+          <SheetTitle>
+            <Link href={'/'} className="flex items-center gap-x-1">
+              <NotebookPen className="size-4 text-neutral-950" />
+              <span className="text-[0.9rem] text-neutral-950 font-bold">
+                NotesApp.
+              </span>
+            </Link>
           </SheetTitle>
           <SheetDescription className="text-[0.8rem] text-neutral-700 text-start">
             The simplest way to keep your notes.
@@ -146,10 +148,8 @@ const LoginButton = () => {
           className="bg-neutral-50 hover:bg-neutral-200 border border-neutral-300 flex items-center gap-x-2 px-2 py-1 md:py-1.5 rounded-md"
           aria-label="Sign In"
         >
-          <LogIn className="size-3 md:size-4 text-neutral-800" />
-          <span className="text-[0.7rem] md:text-[0.8rem] text-neutral-800">
-            Login
-          </span>
+          <LogIn className="size-4 text-neutral-800" />
+          <span className="text-[0.8rem] text-neutral-800">Login</span>
         </Link>
       )}
     </>

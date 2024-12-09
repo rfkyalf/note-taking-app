@@ -70,7 +70,7 @@ const CreateNPublicoteButton = () => {
     <button
       type="submit"
       disabled={pending}
-      className={`bg-neutral-800 hover:bg-neutral-700 text-[0.8rem] md:text-[0.9rem] text-neutral-200 flex items-center justify-center py-1 md:py-2 rounded
+      className={`bg-neutral-800 hover:bg-neutral-700 text-[0.9rem] text-neutral-200 flex items-center justify-center py-2 rounded
           ${pending ? 'opacity-50 cursor-progress' : ''}
           `}
     >
