@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import './globals.css';
+import ProgressBarProviders from '@/providers/ProgressBar';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,7 +24,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className="scroll-smooth">
         <body className={`${inter.className} antialiased`}>
-          {children} <Toaster />
+          <ProgressBarProviders>
+            {children} <Toaster />
+          </ProgressBarProviders>
         </body>
       </html>
     </ClerkProvider>

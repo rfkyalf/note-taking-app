@@ -15,9 +15,11 @@ import Link from 'next/link';
 import Icons from '../Icons';
 import Wrapper from '../Wrapper';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function PublicNotesNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +37,7 @@ export default function PublicNotesNavbar() {
       }`}
     >
       <Wrapper className="flex items-center justify-between">
-        <DesktopNavbar />
+        <DesktopNavbar pathname={pathname} />
         <MobileNavbar />
         <LoginButton />
       </Wrapper>
@@ -100,7 +102,7 @@ const MobileNavbar = () => {
   );
 };
 
-const DesktopNavbar = () => {
+const DesktopNavbar = ({ pathname }: { pathname: string }) => {
   return (
     <>
       <div className="hidden md:flex items-center gap-x-8">
@@ -112,7 +114,13 @@ const DesktopNavbar = () => {
           href="/public-notes/create"
           className="group text-[0.8rem] font-medium text-neutral-800 mt-1"
         >
-          <span className="text-transparent group-hover:text-neutral-800">
+          <span
+            className={` group-hover:text-neutral-800 ${
+              pathname === '/public-notes/create'
+                ? 'text-neutral-800'
+                : 'text-transparent'
+            }`}
+          >
             -
           </span>{' '}
           Create Notes
@@ -121,7 +129,13 @@ const DesktopNavbar = () => {
           href="/public-notes"
           className="group text-[0.8rem] font-medium text-neutral-800 mt-1"
         >
-          <span className="text-transparent group-hover:text-neutral-800">
+          <span
+            className={`group-hover:text-neutral-800 ${
+              pathname === '/public-notes'
+                ? 'text-neutral-800'
+                : 'text-transparent'
+            }`}
+          >
             -
           </span>{' '}
           Search

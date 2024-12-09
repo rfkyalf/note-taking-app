@@ -13,7 +13,7 @@ export default async function PublicNotesPage({
   const publicNotes = await getPublicNotes(query);
 
   return (
-    <main className="flex flex-col gap-y-6 pt-20">
+    <main className="flex flex-col gap-y-6 pt-20 pb-20">
       <div className="flex flex-col items-center">
         <h2 className="text-[1.5rem] md:text-[1.6rem] text-neutral-900 font-semibold text-center">
           Public Notes
