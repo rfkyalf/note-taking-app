@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Notes App | Keep Your Thoughts.',
+    default: 'Notes App | Keep Your Thoughts',
     template: '%s | Notes App',
   },
   description:
@@ -24,6 +24,16 @@ export const metadata: Metadata = {
       { url: '/favicon.svg', type: 'image/svg+xml' },
     ],
     apple: '/apple-touch-icon.png',
+  },
+  openGraph: {
+    title: 'Notes App | Keep Your Thoughts',
+    description:
+      'NotesApp makes it easy to jot down ideas, tasks, and important moments quickly and securely. Keep personal notes or share them publicly—all in one place.',
+    images: '/opengraph-image.png',
+    url: 'https://notesapp-v2.vercel.app/',
+    siteName: 'Notes App | Keep Your Thoughts',
+    locale: 'en-US',
+    type: 'website',
   },
   manifest: '/manifest.json',
 };
